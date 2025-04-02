@@ -67,7 +67,7 @@ mean_grade = df["Puan"].mean()
 
 
 mean_dict = ([{"TCKN" : "",
-            "Ad Soyad" : "Mühendislik Ortalaması",
+            "Ad Soyad" : "Engineering Average",
             "Öğrenci No" : "",
             "Puan" : round(mean_grade,3)}]) #Dictionary(Data SET)
 
