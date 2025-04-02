@@ -1,32 +1,18 @@
-
 # Erasmus Specified Students Filter 🧮
 
 A Python script that pulls Erasmus application data from a public Google Sheet, filters specific students based on TCKN and name rules, sorts them by score, calculates the engineering average, and exports the result as an Excel file.  
-It also **automatically uploads the final Excel file to Google Drive** and generates a public shareable link.
+It also **automatically uploads the final Excel file to your Google Drive** and generates a public shareable link.
 
 ---
 
 ## 🚀 Features
 
-- 📥 Pulls live data from Google Sheets (CSV format)
-- 🔎 Filters students by partial TCKN and name patterns
-- 📊 Sorts by score and calculates overall average
+- 📥 Pulls real-time data from Google Sheets
+- 🔍 Filters students based on custom rules (TCKN & name patterns)
+- 📊 Sorts by score and adds engineering average row
 - 📤 Exports to Excel (`.xlsx`)
-- ☁️ Uploads the file to Google Drive
+- ☁️ Uploads result to Google Drive
 - 🔗 Returns a public shareable link
-
----
-
-## 📂 Output Example
-
-```
-| TCKN   | Ad Soyad     | Öğrenci No | Puan |
-|--------|--------------|------------|------|
-| 213456 | Ahmet Yılmaz | 20201234   | 92.5 |
-| 104512 | Alper Koç    | 20205678   | 89.0 |
-| ...    | ...          | ...        | ...  |
-|        | Engineering Average       | 84.2 |
-```
 
 ---
 
@@ -35,9 +21,10 @@ It also **automatically uploads the final Excel file to Google Drive** and gener
 - Python 3.7+
 - [`pandas`](https://pandas.pydata.org/)
 - [`openpyxl`](https://openpyxl.readthedocs.io/)
-- [`PyDrive`](https://pythonhosted.org/PyDrive/)
+- [`PyDrive`](https://pypi.org/project/PyDrive/)
 
-Install via pip:
+Install dependencies:
+
 ```bash
 pip install pandas openpyxl pydrive
 ```
@@ -46,32 +33,88 @@ pip install pandas openpyxl pydrive
 
 ## 🧭 How to Use
 
-### 1. Clone this repo or copy the `erasmus_filter.py` file.
+### 1. Clone or download this repository
 
-### 2. Set up Google Drive API credentials:
-- Go to [Google Cloud Console](https://console.cloud.google.com/)
-- Create a project → Enable **Google Drive API**
-- Go to **Credentials → Create OAuth client ID** (choose **Desktop app**)
-- Download `client_secrets.json`
-- Place it in the same folder as `erasmus_filter.py`
+```bash
+git clone git@github.com:yourusername/erasmus-filter.git
+cd erasmus-filter
+```
 
-### 3. Run the script:
+### 2. Set up Google Drive API
+
+To enable automatic upload to Google Drive, you must generate a `client_secrets.json` file:
+
+#### 🔒 Why?
+This file contains your personal credentials to connect your Google account securely.
+
+#### 📌 Steps:
+
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project
+3. Enable **Google Drive API**
+4. Go to **APIs & Services > Credentials**
+5. Create **OAuth client ID** → Choose **Desktop app**
+6. Download the file → rename to `client_secrets.json`
+7. Place the file next to your Python script (locally, **do not upload** this to GitHub)
+
+**✅ Warning:**  
+This file is already listed in `.gitignore` and will NOT be committed.
+
+---
+
+### 3. Run the script
+
 ```bash
 python erasmus_filter.py
 ```
 
-### 4. Script will:
-- Open browser to authenticate with Google
-- Pull data → Filter → Export Excel
-- Upload file to your Drive
-- Give you a public shareable link
+You will be prompted to sign into your Google Account in the browser.
+
+---
+
+## 🧾 Output
+
+The final file will be saved as:
+
+```
+Erasmus Specified Students.xlsx
+```
+
+And will be automatically uploaded to your Google Drive with public access enabled.
+
+---
+
+## 🧪 Example Output Format
+
+```
+| TCKN     | Ad Soyad         | Öğrenci No | Puan  |
+|----------|------------------|------------|--------|
+| 21345678 | Ahmet Yılmaz     | 20201234   | 92.5   |
+| 10675412 | Alper Koç        | 20184567   | 88.0   |
+|          | Engineering Average         |        | 84.3   |
+```
+
+---
+
+## 📁 .gitignore
+
+This project includes a `.gitignore` to prevent pushing sensitive or unnecessary files:
+
+```
+client_secrets.json
+__pycache__/
+*.pyc
+*.log
+.env
+.DS_Store
+```
 
 ---
 
 ## 📜 License
 
 MIT License  
-© 2025 Anıl AKSU
+© 2025 Alperen Sümeroğlu
 
 ---
 
@@ -81,8 +124,8 @@ Pull requests are welcome. For major changes, please open an issue first.
 
 ---
 
-## 🌍 Example Usage Scenarios
+## 🌍 Example Use Cases
 
-- Filtering Erasmus applicants
-- Preparing automatic ranking sheets
-- Sharing results with departments via Drive
+- Automating Erasmus selection & sorting
+- Generating reports from Sheets
+- One-click public Drive uploads
