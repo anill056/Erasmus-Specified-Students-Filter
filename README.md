@@ -114,7 +114,7 @@ __pycache__/
 ## 📜 License
 
 MIT License  
-© 2025 Alperen Sümeroğlu
+© 2025 Anıl Aksu
 
 ---
 
